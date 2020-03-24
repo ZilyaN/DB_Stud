@@ -92,7 +92,7 @@ fun main() {
     //Список студентов определённой группы
     val sc = Scanner (System.`in`)
     val group:String = sc.next()
-    val sq1:String =
+    val sql:String =
         "  SELECT name, surname, patronymic. birth" +
                 "FROM student" +
                 "WHERE group num = `$group`" +
@@ -109,6 +109,4 @@ fun main() {
         println()
     }
     println()
-
-
 }
