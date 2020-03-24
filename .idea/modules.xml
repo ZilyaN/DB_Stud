@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/phpktkt.iml" filepath="$PROJECT_DIR$/phpktkt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DB_Stud.iml" filepath="$PROJECT_DIR$/DB_Stud.iml" />
     </modules>
   </component>
 </project>

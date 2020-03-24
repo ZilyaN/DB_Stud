@@ -92,12 +92,12 @@ fun main() {
     //Список студентов определённой группы
     val sc = Scanner (System.`in`)
     val group:String = sc.next()
-    val sql:String =
+    val sq1:String =
         "  SELECT name, surname, patronymic. birth" +
                 "FROM student" +
                 "WHERE group num = `$group`" +
                 "ORDER BY surname, name, patronymic;"
-    val rs:ResultSet = s.executeQuery(sql)
+    val rs:ResultSet = s.executeQuery(sq1)
     while (rs.next()){
         print(rs.getString("surname"))
         print(" ")
