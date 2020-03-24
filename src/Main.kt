@@ -3,7 +3,9 @@ import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.sql.Connection
 import java.sql.DriverManager
+import java.sql.ResultSet
 import java.sql.Statement
+import java.util.*
 
 fun main() {
     val c:Connection = DriverManager.getConnection(
@@ -88,5 +90,25 @@ fun main() {
     }
 
     //Список студентов определённой группы
+    val sc = Scanner (System.`in`)
+    val group:String = sc.next()
+    val sq1:String =
+        "  SELECT name, surname, patronymic. birth" +
+                "FROM student" +
+                "WHERE group num = `$group`" +
+                "ORDER BY surname, name, patronymic;"
+    val rs:ResultSet = s.executeQuery(sql)
+    while (rs.next()){
+        print(rs.getString("surname"))
+        print(" ")
+        print (rs.getString("name"))
+        print(" ")
+        print (rs.getString("patronymic"))
+        print(" ")
+        print (rs.getString("birth"))
+        println()
+    }
+    println()
+
 
 }
