@@ -53,26 +53,40 @@ fun main() {
     s.execute(ct3)
 
     val files:List<String> = listOf("student.csv", "subject.csv", "progress.csv")
-    for (f:String in files){
+    for (f:String in files) {
         val br = BufferedReader(
             InputStreamReader(
                 FileInputStream(f)
             )
         )
-        val tb1:String = f.split(".")[0]
+        val tb1: String = f.split(".")[0]
         var first = true
-        var cols:List<String> = listOf<String>()
-        while (br.ready()){
-            val l:String = br.readLine()
-            if (first && l!=null){
+        var cols: List<String> = listOf<String>()
+        while (br.ready()) {
+            val l: String = br.readLine()
+            if (first && l != null) {
                 first = false
                 cols = l.split(";")
                 continue
             }
-            
+            if (l != null) {
+                val vals: List<String> = l.split(";")
+                var q = "INSERT INTO `$tb1` ("
+                for (i: Int in 0 until cols.size) {
+                    q += "'$vals[i]}'"
+                    if (i < cols.size - 1) q += ","
+                }
+                q += ") VALUES ("
+                for (i: Int in 0 until vals.size) {
+                    q += "'$vals[i]}'"
+                    if (i < vals.size - 1) q += ","
+                }
+                q += ");"
+                s.execute(q)
+            } else break
         }
-
     }
 
+    //Список студентов определённой группы
 
 }
