@@ -9,7 +9,7 @@ import java.util.*
 
 fun main() {
     val c:Connection = DriverManager.getConnection(
-        "jdbc:mycq://local",
+        "jdbc:mycql://localhost:3306",
         "Zilya",
         "123456"
     )
