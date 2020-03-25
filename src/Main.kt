@@ -120,4 +120,29 @@ fun main() {
         print(result2.getString("AVG(mark)"))
         println()
     }
+
+    println("-----------------------------------------")
+    //Вывод стипендии студентов
+    val sq3 = "SELECT student.name, student.surname, student.patronymic, MIN(mark) "+
+            "FROM `student` "+
+            "INNER JOIN `mark` "+
+            "ON student.id=mark.stud_id "+
+            "GROUP BY mark.stud_id;"
+    val result3 = s.executeQuery(sq3)
+    while (result3.next()) {
+        print(result3.getString("surname"))
+        print(" ")
+        print(result3.getString("name"))
+        print(" ")
+        print(result3.getString("patronymic"))
+        print(" ")
+        //print(result3.getString("MIN(mark)"))
+        print(" ")
+        if(result3.getString("MIN(mark)").toInt()>=56 && result3.getString("MIN(mark)").toInt()<71) println("0р")
+        //print(" ")
+        if(result3.getString("MIN(mark)").toInt()>=71 && result3.getString("MIN(mark)").toInt()<86) println("1700р")
+        //print(" ")
+        if(result3.getString("MIN(mark)").toInt()>=86 && result3.getString("MIN(mark)").toInt()<=100) println("2700р")
+        //print(" ")
+    }
 }
