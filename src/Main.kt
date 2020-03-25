@@ -139,10 +139,8 @@ fun main() {
         //print(result3.getString("MIN(mark)"))
         print(" ")
         if(result3.getString("MIN(mark)").toInt()>=56 && result3.getString("MIN(mark)").toInt()<71) println("0р")
-        //print(" ")
         if(result3.getString("MIN(mark)").toInt()>=71 && result3.getString("MIN(mark)").toInt()<86) println("1700р")
-        //print(" ")
         if(result3.getString("MIN(mark)").toInt()>=86 && result3.getString("MIN(mark)").toInt()<=100) println("2700р")
-        //print(" ")
+
     }
 }
