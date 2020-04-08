@@ -123,24 +123,18 @@ fun main() {
 
     println("-----------------------------------------")
     //Вывод стипендии студентов
-    val sq3 = "SELECT student.name, student.surname, student.patronymic, MIN(mark) "+
-            "FROM `student` "+
-            "INNER JOIN `mark` "+
-            "ON student.id=mark.stud_id "+
-            "GROUP BY mark.stud_id;"
-    val result3 = s.executeQuery(sq3)
-    while (result3.next()) {
-        print(result3.getString("surname"))
-        print(" ")
-        print(result3.getString("name"))
-        print(" ")
-        print(result3.getString("patronymic"))
-        print(" ")
-        //print(result3.getString("MIN(mark)"))
-        print(" ")
-        if(result3.getString("MIN(mark)").toInt()>=56 && result3.getString("MIN(mark)").toInt()<71) println("0р")
-        if(result3.getString("MIN(mark)").toInt()>=71 && result3.getString("MIN(mark)").toInt()<86) println("1700р")
-        if(result3.getString("MIN(mark)").toInt()>=86 && result3.getString("MIN(mark)").toInt()<=100) println("2700р")
+    val sq4 = "SELECT id,concat(surname,' ',n,'.',p,'.') as fio, mmark, stipendiya " +
+            "FROM (select sid as id,surname,n,p,min(mark) as mmark, IF(min(mark)=4,1800,IF(min(mark)=5,2600,0)) as stipendiya from (Select student.id as sid, surname, substring(name, 1, 1) as n, substring(patronymic, 1, 1) as p, 2*(year(now())-admission)-if(month(now())=1,2,if(month(now())>=2 and month(now())<=6,1,0)) as sess from student) as studsess " +
+            "INNER JOIN(select subj_id, stud_id, if(mark<56,2,if(mark<71,3,if(mark<86,4,5))) as mark, semester from mark inner join subject on subject.id = subj_id) as marks " +
+            "ON sid=marks.stud_id group by sid) as stds WHERE mmark>=4"
 
+    val result4 = s.executeQuery(sq4)
+    while (result4.next()) {
+        print(result4.getString("fio"))
+        print(" ")
+        print(result4.getString("mmark"))
+        print(" ")
+        print(result4.getString("stipendiya"))
+        println()
     }
 }
